@@ -27,7 +27,22 @@ const addItem = async item => {
 	}
 }
 
+const deleteItem = async id => {
+	try {
+			const {data, error} = await supabase
+					.from('ex')
+					.delete()
+					.match({id});
+
+			if (error) throw error
+			return data
+	} catch (e) {
+			throw e
+	}
+}
+
 export default {
 	getItems,
-	addItem
+	addItem,
+	deleteItem
 }

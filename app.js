@@ -18,6 +18,7 @@ app.use(express.json());
 
 app.get('/api/contacts', Controller.getItems)
 app.post('/api/contacts', Controller.addItem)
+app.delete('/api/contacts/:id', Controller.deleteItem)
 
 app.get('/', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'frontend', 'index.html'))

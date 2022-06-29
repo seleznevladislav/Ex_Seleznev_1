@@ -28,7 +28,19 @@ const addItem = async (req, res, next) => {
 	}
 }
 
+const deleteItem = async (req, res, next) => {
+	try {
+			const data = await Service.deleteItem(req.params["id"]);
+			res.send(data);
+			next();
+	} catch(e) {
+			console.error(e);
+			res.sendStatus(500);
+	}
+}
+
 export default {
 	getItems,
-	addItem
+	addItem,
+	deleteItem,
 }
