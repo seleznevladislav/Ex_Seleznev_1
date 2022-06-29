@@ -90,23 +90,24 @@ deleteBlocks = function(number){
 }
 form();
 
-// async function mounted(){
-// 	let count = 0;
-// 	// const data = await request('/api/contacts');
-// 	if (data.length > 0)
-// 	{
-// 		information = data;
-// 		while (count < data.length)
-// 		{
-// 			showContent(information[count])
-// 			console.log(count)
-// 			count++;
-// 		}
+async function mounted(){
+	let count = 0;
+	const data = await request('/api/contacts');
+	console.log(data)
+	if (data.length > 0)
+	{
+		information = data;
+		while (count < data.length)
+		{
+			showContent(information[count])
+			console.log(count)
+			count++;
+		}
 	
-// 		del.style.display = 'none';
-// 	}
+		del.style.display = 'none';
+	}
 	
-// }
+}
 async function removeInfo(id)
 {
 	await request(`/api/contacts/${id}`, 'DELETE')
@@ -136,4 +137,4 @@ async function request(url , method='GET', data=null) {
 }
 
 
-// mounted();
+mounted();

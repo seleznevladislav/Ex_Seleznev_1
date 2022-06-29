@@ -47,10 +47,9 @@ input{
 	font-size: 20px;
 }
 .middle{
-	margin-top: 50px;
 	padding: 0px 0px 20px 20px;
 	border: 1px solid black;	
-	border-radius: 7px;
+	border-radius: 10px;
 }
 .delete {
 	background-color: #D92E3E;
@@ -65,6 +64,9 @@ input{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+.information {
+	width: 40vw;
 }
 footer {
 	position: absolute;
