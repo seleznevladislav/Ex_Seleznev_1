@@ -12,12 +12,18 @@ const getItems = async (req, res, next) => {
 }
 
 const addItem = async (req, res, next) => {
-	const Item = {
-		id: req.body.id,
-		name: req.body.name,
-		value: req.body.value,
-		marked: req.body.marked,
+	const Item = {}
+	if ((req.body.name !== '') && (req.body.value !== '')) {
+			 
+			Item.id = req.body.id,
+			Item.name = req.body.name,
+			Item.value = req.body.value,
+			Item.marked = req.body.marked
+	
+	} else {
+		res.sendStatus(500)
 	}
+
 	try {
 			const dataItem = await Service.addItem(Item)
 			res.send(dataItem)
@@ -30,6 +36,7 @@ const addItem = async (req, res, next) => {
 
 const deleteItem = async (req, res, next) => {
 	try {
+			console.log("Id удаляемого товара: ",req.params["id"])
 			const data = await Service.deleteItem(req.params["id"]);
 			res.send(data);
 			next();

@@ -41,7 +41,7 @@ async function buttonFunc(event){
 
 		const newInfo = await request('/api/contacts', 'POST', json);
 		
-		information.push(newInfo);
+		// information.push(newInfo);
 		console.log('Получена информация: ',newInfo)
 
 		
@@ -63,7 +63,7 @@ const showContent = function(json) {
 			<h3 class='name'>${json.name}</h3>
 			<p>${json.value}</p>
 			<button class="marked" onclick="changeStyle(${counter})">Отметить</button>
-			<button class="delete" onclick="deleteBlocks(${counter})">Удалить</button>
+			<button class="delete" onclick="deleteBlocks(${json.id + 1})">Удалить</button>
 		</div>
 	</li>
 	`
@@ -81,7 +81,8 @@ changeStyle = function(number){
 
 }
 deleteBlocks = function(number){
-	removeInfo(information[number-1].id)
+	console.log(number-1)
+	removeInfo(number-1)
 	let blocks = document.querySelectorAll('.information');
 	blocks[number-1].style.display = 'none';
 	information.splice(number-i,1);
@@ -107,6 +108,7 @@ async function mounted(){
 }
 async function removeInfo(id)
 {
+	console.log(id)
 	await request(`/api/contacts/${id}`, 'DELETE')
 	information = information.filter(c => c.id !== id)
 	console.log(information)
