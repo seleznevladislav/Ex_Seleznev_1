@@ -32,9 +32,9 @@ async function buttonFunc(event){
 
 
 		json = {
+			id: counter,
 			name: nameIn.value,
 			value: valueIn.value,
-			id: counter,
 			marked: false
 		}
 		
@@ -42,12 +42,11 @@ async function buttonFunc(event){
 		const newInfo = await request('/api/contacts', 'POST', json);
 		
 		information.push(newInfo);
-		console.log('Получена')
-		console.log(newInfo)
+		console.log('Получена информация: ',newInfo)
 
 		
-
-		showContent(newInfo);
+		setTimeout(showContent(newInfo[0]), 0)
+		
 
 		
 		nameIn.value = '';
@@ -93,14 +92,12 @@ form();
 async function mounted(){
 	let count = 0;
 	const data = await request('/api/contacts');
-	console.log(data)
 	if (data.length > 0)
 	{
 		information = data;
 		while (count < data.length)
 		{
 			showContent(information[count])
-			console.log(count)
 			count++;
 		}
 	

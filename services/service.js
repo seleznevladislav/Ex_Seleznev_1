@@ -14,6 +14,20 @@ const getItems = async () => {
 	}
 }
 
+const addItem = async item => {
+	try {
+			const {data, error} = await supabase
+					.from('ex')
+					.insert(item)
+
+			if (error) throw error
+			return data
+	} catch (e) {
+			throw e
+	}
+}
+
 export default {
-	getItems
+	getItems,
+	addItem
 }
